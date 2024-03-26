@@ -5,7 +5,7 @@
   <br>(Get AWS acct details with `aws sts get-account-identity` from CLI)
 - Begin CDK project with: `cdk init -l typescript`
 - Edit file in - lib/UR_STACK_FILE_NAME.ts - Here is where we configure and create Lambda Function and Docker
-- Create api directory to hold Dockerfile, shell script, and Python script
+- Create a Api directory to hold Dockerfile, shell script, and Python script
 -
 
 ### Objective
