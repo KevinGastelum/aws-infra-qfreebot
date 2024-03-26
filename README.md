@@ -4,9 +4,9 @@
 - Bootstrap your AWS acct details (only needs to be done once) run: `cdk bootstrap aws://UR_ACCT_NUMBER/UR_REGION{us-east-1}`
   <br>(Get AWS acct details with `aws sts get-account-identity` from CLI)
 - Begin CDK project with: `cdk init -l typescript`
-- Edit file in - lib/UR_STACK_FILE_NAME.ts - Here is where we configure and create Lambda Function and Docker
+- Edit file in - lib/UR_STACK_FILE_NAME.ts - Here is where we configure and create Lambda Function and Docker to run
 - Create a Api directory to hold Dockerfile, shell script, and Python script
-- Run ./shell_script.sh
+- Run ./shell_script.sh and this will pip install reqs into a zip file for our lambda function to run from
 
 ### Objective
 
