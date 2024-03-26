@@ -4,7 +4,7 @@ import * as ddb from 'aws-cdk-lib/aws-dynamodb'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as cdk from 'aws-cdk-lib'
 
-export class TodoInfraStack extends Stack {
+export class AwsInfraQfreebotStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props)
 
@@ -25,7 +25,7 @@ export class TodoInfraStack extends Stack {
     // Create Lambda function for the API
     const api = new lambda.Function(this, 'API', {
       runtime: lambda.Runtime.PYTHON_3_8,
-      code: lambda.Code.fromAsset('../api'),
+      code: lambda.Code.fromAsset('./api'),
       handler: 'todo.handler',
       environment: {
         TABLE_NAME: table.tableName,
