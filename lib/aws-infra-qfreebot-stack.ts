@@ -22,19 +22,23 @@ export class TodoInfraStack extends Stack {
       sortKey: { name: 'created_time', type: ddb.AttributeType.NUMBER },
     })
 
-    const dockerFunc = new lambda.DockerImageFunction(this, 'DockerFunc', {
-      code: lambda.DockerImageCode.fromImageAsset('../api'),
-      memorySize: 1024,
-      timeout: cdk.Duration.minutes(5),
-      architecture: lambda.Architecture.X86_64,
+    // Create Lambda function for the API
+    const api = new lambda.Function(this, 'API', {
+      runtime: lambda.Runtime.PYTHON_3_8,
+      code: lambda.Code.fromAsset('../api'),
+      handler: 'todo.handler',
+      environment: {
+        TABLE_NAME: table.tableName,
+      },
     })
 
-    const functionUrl = dockerFunc.addFunctionUrl({
+    // Create URL to access function
+    const functionUrl = api.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       cors: {
+        allowedOrigins: ['*'],
         allowedMethods: [lambda.HttpMethod.ALL],
         allowedHeaders: ['*'],
-        allowedOrigins: ['*'],
       },
     })
 
@@ -42,5 +46,7 @@ export class TodoInfraStack extends Stack {
     new CfnOutput(this, 'APIUrl', {
       value: functionUrl.url,
     })
+    // Give Lambda permissions to read/write to the table
+    table.grantReadWriteData(api)
   }
 }
