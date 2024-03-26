@@ -6,7 +6,7 @@
 - Begin CDK project with: `cdk init -l typescript`
 - Edit file in - lib/UR_STACK_FILE_NAME.ts - Here is where we configure and create Lambda Function and Docker
 - Create a Api directory to hold Dockerfile, shell script, and Python script
--
+- Run ./shell_script.sh
 
 ### Objective
 
