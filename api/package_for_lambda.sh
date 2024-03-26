@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# Exit if any commaind fails
-set -eux pipefail
+# Exit if any command fails
+set -eux -o pipefail
+
 pip install -t lib -r requirements.txt
+rm -f lambda_function.zip
 (cd lib; zip ../lambda_function.zip -r .)
-zip lambda_function.zip -u todo.py
+zip -u lambda_function.zip todo.py
 
 # Clean up
 rm -rf lib

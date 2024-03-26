@@ -24,7 +24,7 @@ export class AwsInfraQfreebotStack extends Stack {
 
     // Create Lambda function for the API
     const api = new lambda.Function(this, 'API', {
-      runtime: lambda.Runtime.PYTHON_3_8,
+      runtime: lambda.Runtime.PYTHON_3_9,
       code: lambda.Code.fromAsset('./api/lambda_function.zip'),
       handler: 'todo.handler',
       environment: {
