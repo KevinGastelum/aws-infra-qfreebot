@@ -1,8 +1,8 @@
-import { CfnOutput, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib'
+import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import * as ddb from 'aws-cdk-lib/aws-dynamodb'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
-import * as cdk from 'aws-cdk-lib'
+// import * as cdk from 'aws-cdk-lib'
 
 export class AwsInfraQfreebotStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
