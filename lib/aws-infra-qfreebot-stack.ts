@@ -1,7 +1,7 @@
 import { Stack, StackProps, aws_ec2, aws_iam } from 'aws-cdk-lib' // CfnOutput
 import { Construct } from 'constructs'
 import { Effect } from 'aws-cdk-lib/aws-iam'
-// import * as lambda from 'aws-cdk-lib/aws-lambda'
+import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as fs from 'fs'
 
 interface NetworkProps extends StackProps {
