@@ -6,4 +6,4 @@ handler = Mangum(app)
 
 @app.get("/")
 def root():
-  return {"message": "Hello World from TODO API..."}
+    return {"message": "Hello World..."}
