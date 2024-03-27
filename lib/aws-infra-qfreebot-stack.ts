@@ -1,39 +1,23 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
-import * as ddb from 'aws-cdk-lib/aws-dynamodb'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
-// import * as cdk from 'aws-cdk-lib'
+import { time } from 'console'
+import * as cdk from 'aws-cdk-lib'
 
 export class AwsInfraQfreebotStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props)
 
-    // Create DDB table to store the tasks.
-    const table = new ddb.Table(this, 'Tasks', {
-      partitionKey: { name: 'task_id', type: ddb.AttributeType.STRING },
-      billingMode: ddb.BillingMode.PAY_PER_REQUEST,
-      timeToLiveAttribute: 'ttl',
+    const dockerFunc = new lambda.DockerImageFunction(this, 'DockerFunc', {
+      code: lambda.DockerImageCode.fromImageAsset('./api'),
+      memorySize: 2024,
+      timeout: cdk.Duration.minutes(5),
+      architecture: lambda.Architecture.X86_64,
     })
-
-    // Add GSI based on user_id.
-    table.addGlobalSecondaryIndex({
-      indexName: 'user-index',
-      partitionKey: { name: 'user_id', type: ddb.AttributeType.STRING },
-      sortKey: { name: 'created_time', type: ddb.AttributeType.NUMBER },
-    })
-
-    // Create Lambda function for the API
-    const api = new lambda.Function(this, 'API', {
-      runtime: lambda.Runtime.PYTHON_3_9,
-      code: lambda.Code.fromAsset('./api/lambda_function.zip'),
-      handler: 'todo.handler',
-      environment: {
-        TABLE_NAME: table.tableName,
-      },
-    })
+    // Turn this into docker func AND create dockerfile in
 
     // Create URL to access function
-    const functionUrl = api.addFunctionUrl({
+    const functionUrl = dockerFunc.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       cors: {
         allowedOrigins: ['*'],
@@ -46,7 +30,5 @@ export class AwsInfraQfreebotStack extends Stack {
     new CfnOutput(this, 'APIUrl', {
       value: functionUrl.url,
     })
-    // Give Lambda permissions to read/write to the table
-    table.grantReadWriteData(api)
   }
 }
