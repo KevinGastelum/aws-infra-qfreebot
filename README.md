@@ -1,3 +1,7 @@
+## Objective
+
+Deploy AWS infrastructure with EC2 instance that includes all our settings already configured - VPC, IAM role, Security Group, Policy Rules, etc. Deploy Lambda Function with Docker that runs FastAPI, HTTPX asynchronously to deploy algo bot
+
 # Steps to reproduce
 
 - Install (CDK) Cloud Dev Kit node command: `npm install -g aws-cdk`
@@ -7,10 +11,6 @@
 - Edit file in - lib/UR_STACK_FILE_NAME.ts - Here is where we configure and create Lambda Function and Docker to run
 - Create a Api directory to hold Dockerfile, shell script, and Python script
 - Run ./shell_script.sh and this will pip install reqs into a zip file for our lambda function to run from
-
-### Objective
-
-Deploy EC2 instance with all our settings already configured - VPC, IAM role, Security Group, Policy Rules, etc. Deploy Lambda Function with Docker that runs FastAPI, HTTPX asynchronously to deploy algo bot
 
 <!-- # Welcome to your CDK TypeScript project
 
