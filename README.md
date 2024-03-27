@@ -1,8 +1,8 @@
-## Objective
+# Objective
 
 Deploy AWS infrastructure with EC2 instance that includes all our settings already configured - VPC, IAM role, Security Group, Policy Rules, etc. Deploy Lambda Function with Docker that runs FastAPI, HTTPX asynchronously to deploy algo bot
 
-# Steps to reproduce
+## Steps to reproduce
 
 - Install (CDK) Cloud Dev Kit node command: `npm install -g aws-cdk`
 - Bootstrap your AWS acct details (only needs to be done once) run: `cdk bootstrap aws://UR_ACCT_NUMBER/UR_REGION{us-east-1}`
