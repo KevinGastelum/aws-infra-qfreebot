@@ -1,1 +1,8 @@
-["The Great Gatsby", "Atomic Habits", "Moonwalking with Einstein", "boondocks"]
+[
+  {
+    "name": "Boondocks",
+    "price": 12.0,
+    "genre": "fiction",
+    "book_id": "72065650fcbc439198aba427d1fef268"
+  }
+]
