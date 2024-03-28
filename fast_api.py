@@ -16,12 +16,13 @@ class Book(BaseModel):
    book_id: Optional[str] = uuid4().hex
 
 # Create a json to make book entries persist.. when a new book is entered, write it onto json file to keep even after restarting app
+BOOK_DATABASE = []
+
 BOOKS_FILE = "books.json"
 if os.path.exists(BOOKS_FILE):
     with open(BOOKS_FILE, "r") as f:
       BOOK_DATABASE = json.load(f)
 
-BOOK_DATABASE = []
 
 
 @app.get("/")
