@@ -9,5 +9,7 @@ RUN pip install -r requirements.txt
 #  Copy files into src directory
 COPY src/* ${LAMBDA_TASK_ROOT}
 
+EXPOSE 6000
+
 # Set your handler file
 CMD [ "main.handler" ]
