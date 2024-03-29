@@ -4,8 +4,8 @@ Deploy AWS infrastructure with EC2 instance that includes all our settings alrea
 
 ## Steps to reproduce
 
-- pip install awscli --> aws configure --> enter keys&region
-- Install (CDK) Cloud Dev Kit node command: `npm install -g aws-cdk`
+- Install AWS's terminal interface and enter your configs (`pip install awscli` --> `aws configure` --> enter keys&region )
+- Install (CDK) Cloud Dev Kit node with command: `npm install -g aws-cdk`
 - Bootstrap your AWS acct details (only needs to be done once) run: `cdk bootstrap aws://UR_ACCT_NUMBER/UR_REGION{us-east-1}`
   <br>(Get AWS acct details with `aws sts get-account-identity` from CLI)
 - Begin CDK project with: `cdk init -l typescript`
